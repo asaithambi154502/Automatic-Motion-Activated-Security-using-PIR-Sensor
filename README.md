@@ -1,3 +1,4 @@
+# 212223020003 - ASAITHAMBI M
 # Automatic-Motion-Activated-Security-using-PIR-Sensor
 ## AIM:
              To detect motion using a PIR sensor connected to an Arduino and trigger an LED (using the built-in LED) when motion is sensed.
@@ -18,7 +19,11 @@
 PIR sensors are widely used in motion detection systems, security alarms, automatic lighting systems, and smart surveillance. They are popular due to their low power consumption, affordability, and ease of integration with microcontrollers such as the Arduino Uno. The sensor typically has three pins: VCC (power), GND (ground), and OUT (signal). When idle, the output pin remains LOW. Once motion is detected, the sensor sends a HIGH signal to the microcontroller, which can be used to trigger a response such as turning on an LED or activating an alarm.
 In this experiment, the PIR sensor is connected to an Arduino Uno board. The VCC pin of the sensor is connected to the 5V supply of the Arduino to power the sensor. The GND pin is connected to the Arduino’s ground. The OUT pin is connected to a digital input pin (pin 2 in this case) of the Arduino. The Arduino continuously monitors the state of the signal pin. If the signal pin goes HIGH, it means the sensor has detected motion, and the Arduino is programmed to turn ON the built-in LED on pin 13. If no motion is detected, the signal remains LOW, and the LED is turned OFF.
 Circuit Diagram:
- 
+
+## CIRCUIT DIAGRAM 
+
+ <img width="906" height="622" alt="Screenshot 2025-09-19 082803" src="https://github.com/user-attachments/assets/ef549516-2a29-45d9-894f-2be1b8274a82" />
+
 ## Procedure: //Modify based on your circuit
 
 Step 1: Set Up the Tinkercad Environment
@@ -60,14 +65,38 @@ Step 7: Save Your Work
 
 
 # Code:
+```
+int sensorState = 0;
 
+void setup()
+{
+  pinMode(2, INPUT);
+  pinMode(13, OUTPUT);
+  Serial.begin(9600);
 
+}
 
+void loop()
+{
+  // read the state of digital input pin 2
+  sensorState = digitalRead(2);
+  // check digital pin 2 is HIGH. if it is, set the
+  // LED on.
+  if (sensorState == HIGH) {
+    digitalWrite(13, HIGH);
+    Serial.println("Sensor activated!");
+  } else {
+    digitalWrite(13, LOW);
+     Serial.println("Sensor Deactivated!");
+  }
+  delay(10); 
+}
+```
 # Output:
 
-
-
+https://github.com/user-attachments/assets/10916abb-7ac4-4f85-9a5a-1c8ae3379caa
 
 # Result:
+
 The PIR sensor successfully detected motion and triggered the Arduino to turn ON the built-in LED. The LED remained OFF when no motion was present, confirming correct circuit and code functionality.
 
